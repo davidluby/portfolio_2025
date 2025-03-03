@@ -1,12 +1,11 @@
 'use client'
-import { cwd } from 'process'
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 const Sim = () => {
   const U_FIELD = 0
   const V_FIELD = 1
   const S_FIELD = 2
-  let count = 0
+  let _count = 0
 
 
   const scene = {
@@ -21,7 +20,7 @@ const Sim = () => {
   }
 
   useEffect (() => {
-    let mat4 = require('gl-mat4')
+    let mat4 = require('./gl-mat4')
 
     // init canvas/context
     const canvas = document.getElementById('fluid')
@@ -281,7 +280,7 @@ const Sim = () => {
 		startDrag(event.x, event.y);
 	});
 
-	canvas.addEventListener('mouseup', event => {
+	canvas.addEventListener('mouseup', _event => {
 		endDrag();
 	});
 
@@ -293,7 +292,7 @@ const Sim = () => {
 		startDrag(event.touches[0].clientX, event.touches[0].clientY)
 	});
 
-	canvas.addEventListener('touchend', event => {
+	canvas.addEventListener('touchend', _event => {
 		endDrag()
 	});
   canvas.addEventListener('touchmove', event => {
@@ -455,7 +454,7 @@ const Sim = () => {
 
         for (let i = 1; i < this.x_dim; i++) {
           for (let j = 1; j < this.y_dim; j++) {
-            count++
+            _count++
 
             if (this.s[i*n + j] != 0.0 && this.s[(i-1)*n + j] != 0.0 && j < this.y_dim - 1) {
               let x = i * this.h
