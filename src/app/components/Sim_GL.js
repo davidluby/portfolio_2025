@@ -20,7 +20,7 @@ const Sim = () => {
   }
 
   useEffect (() => {
-    let mat4 = require('./gl-mat4')
+    let mat4 = require('gl-mat4')
 
     // init canvas/context
     const canvas = document.getElementById('fluid')
